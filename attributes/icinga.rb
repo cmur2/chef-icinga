@@ -102,10 +102,10 @@ default[:icinga][:services] = [
     "check_command" => "check_ping!100.0,1%!500.0,10%"
   },
   {
-    "use": "generic-service",
-    "host_name": "localhost",
-    "service_description": "SSH",
-    "check_command": "check_ssh"
+    "use" => "generic-service",
+    "host_name" => "localhost",
+    "service_description" => "SSH",
+    "check_command" => "check_ssh"
   }
 ]
 default[:icinga][:servicegroups] = []
