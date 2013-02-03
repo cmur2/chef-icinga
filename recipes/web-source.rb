@@ -4,7 +4,6 @@ include_recipe "php"
 include_recipe "build-essential"
 
 # Debian 6
-package "build-essential" # TODO: without!
 package "php5-xmlrpc"
 package "php5-xsl"
 package "php5-gd"
