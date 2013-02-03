@@ -1,5 +1,6 @@
 
 include_recipe "mysql::server"
+include_recipe "build-essential"
 
 user "icinga"
 
@@ -13,7 +14,6 @@ end
 
 case node[:platform]
 when "debian"
-  package "build-essential" # TODO: without!
   package "libgd2-xpm-dev"
   package "libjpeg62"
   package "libjpeg62-dev"

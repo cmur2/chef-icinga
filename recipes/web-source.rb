@@ -1,6 +1,7 @@
 
 include_recipe "icinga"
 include_recipe "php"
+include_recipe "build-essential"
 
 # Debian 6
 package "build-essential" # TODO: without!
