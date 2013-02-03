@@ -98,6 +98,22 @@ template "#{install_path}/etc/conf.d/services.cfg" do
   notifies :reload, "service[icinga]"
 end
 
+template "#{install_path}/etc/conf.d/timeperiods.cfg" do
+  source "timeperiods.cfg.erb"
+  owner "icinga"
+  group "icinga"
+  variables( :timeperiods => node[:icinga][:timeperiods] )
+  notifies :reload, "service[icinga]"
+end
+
+template "#{install_path}/etc/conf.d/commands.cfg" do
+  source "commands.cfg.erb"
+  owner "icinga"
+  group "icinga"
+  variables( :commands => node[:icinga][:commands] )
+  notifies :reload, "service[icinga]"
+end
+
 execute "copy idomod sample config" do
   command "cp idomod.cfg-sample idomod.cfg"
   creates "#{install_path}/etc/idomod.cfg"
