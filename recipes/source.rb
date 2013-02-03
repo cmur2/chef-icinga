@@ -9,7 +9,7 @@ group "icinga" do
 end
 
 group "icinga-cmd" do
-  members ["icinga"]
+  members ["icinga", "www-data"]
 end
 
 case node[:platform]
