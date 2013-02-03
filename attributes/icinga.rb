@@ -23,6 +23,7 @@ default[:icinga][:template][:contactgroups] = []
 default[:icinga][:template][:hosts] = [
   {
     "name" => "generic-host",
+    "check_command" => "check-host-alive",
     "notifications_enabled" => "1",
     "event_handler_enabled" => "1",
     "flap_detection_enabled" => "1",
@@ -30,6 +31,13 @@ default[:icinga][:template][:hosts] = [
     "process_perf_data" => "1",
     "retain_status_information" => "1",
     "retain_nonstatus_information" => "1",
+    "check_period" => "24x7",
+    "max_check_attempts" => "3",
+    "check_interval" => "5",
+    "retry_interval" => "1",
+    "contact_groups" => "admins",
+    "notification_options" => "d,u,r",
+    "notification_interval" => "60",
     "notification_period" => "24x7"
   }
 ]
@@ -53,8 +61,8 @@ default[:icinga][:template][:services] = [
     "is_volatile" => "0",
     "check_period" => "24x7",
     "max_check_attempts" => "3",
-    "normal_check_interval" => "10",
-    "retry_check_interval" => "2",
+    "check_interval" => "5",
+    "retry_interval" => "1",
     "contact_groups" => "admins",
     "notification_options" => "w,u,c,r",
     "notification_interval" => "60",
