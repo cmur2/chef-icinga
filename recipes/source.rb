@@ -114,6 +114,19 @@ template "#{install_path}/etc/conf.d/commands.cfg" do
   notifies :reload, "service[icinga]"
 end
 
+template "#{install_path}/etc/conf.d/templates.cfg" do
+  source "templates.cfg.erb"
+  owner "icinga"
+  group "icinga"
+  variables(
+    :contacts => node[:icinga][:template][:contacts], :contactgroups => node[:icinga][:template][:contactgroups],
+    :hosts => node[:icinga][:template]v[:hosts], :hostgroups => node[:icinga][:template][:hostgroups],
+    :services => node[:icinga][:template][:services], :servicegroups => node[:icinga][:template][:servicegroups],
+    :timeperiods => node[:icinga][:template][:timeperiods],
+    :commands => node[:icinga][:template][:commands] )
+  notifies :reload, "service[icinga]"
+end
+
 execute "copy idomod sample config" do
   command "cp idomod.cfg-sample idomod.cfg"
   creates "#{install_path}/etc/idomod.cfg"

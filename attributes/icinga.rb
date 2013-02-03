@@ -3,13 +3,111 @@ default[:icinga][:checksum] = "e1ecbc6c83bb"
 default[:icinga][:web][:version] = "1.8.1"
 default[:icinga][:web][:checksum] = "3f23e94ad0c8"
 
-default[:icinga][:contacts] = []
-default[:icinga][:contactgroups] = []
+# ICINGA SAMPLE CONFIGURATION
 
-default[:icinga][:hosts] = []
+# template section (these get a "register 0" automatically added)
+
+default[:icinga][:template][:contacts] = [
+  {
+    "name" => "generic-contact",
+    "service_notification_period" => "24x7",
+    "host_notification_period" => "24x7",
+    "service_notification_options" => "w,u,c,r,f,s",
+    "host_notification_options" => "d,u,r,f,s",
+    "service_notification_commands" => "notify-service-by-email",
+    "host_notification_commands" => "notify-host-by-email"
+  }
+]
+default[:icinga][:template][:contactgroups] = []
+
+default[:icinga][:template][:hosts] = [
+  {
+    "name" => "generic-host",
+    "notifications_enabled" => "1",
+    "event_handler_enabled" => "1",
+    "flap_detection_enabled" => "1",
+    "failure_prediction_enabled" => "1",
+    "process_perf_data" => "1",
+    "retain_status_information" => "1",
+    "retain_nonstatus_information" => "1",
+    "notification_period" => "24x7"
+  }
+]
+default[:icinga][:template][:hostgroups] = []
+
+default[:icinga][:template][:services] = [
+  {
+    "name" => "generic-service",
+    "active_checks_enabled" => "1",
+    "passive_checks_enabled" => "1",
+    "parallelize_check" => "1",
+    "obsess_over_service" => "1",
+    "check_freshness" => "0",
+    "notifications_enabled" => "1",
+    "event_handler_enabled" => "1",
+    "flap_detection_enabled" => "1",
+    "failure_prediction_enabled" => "1",
+    "process_perf_data" => "1",
+    "retain_status_information" => "1",
+    "retain_nonstatus_information" => "1",
+    "is_volatile" => "0",
+    "check_period" => "24x7",
+    "max_check_attempts" => "3",
+    "normal_check_interval" => "10",
+    "retry_check_interval" => "2",
+    "contact_groups" => "admins",
+    "notification_options" => "w,u,c,r",
+    "notification_interval" => "60",
+    "notification_period" => "24x7"
+  }
+]
+default[:icinga][:template][:servicegroups] = []
+
+default[:icinga][:template][:timeperiods] = []
+default[:icinga][:template][:commands] = []
+
+# normal section
+
+default[:icinga][:contacts] = [
+  {
+    "use" => "generic-contact",
+    "contact_name" => "admin",
+    "contactgroups" => "admins",
+    "alias" => "Admin",
+    "email" => "root@localhost"
+  }
+]
+default[:icinga][:contactgroups] = [
+  {
+    "contactgroup_name" => "admins",
+    "alias" => "Admins"
+  }
+]
+
+default[:icinga][:hosts] = [
+  {
+    "use" => "generic-host",
+    "host_name" => "localhost",
+    "alias" => "localhost",
+    "address" => "127.0.0.1"
+  }
+]
 default[:icinga][:hostgroups] = []
 
-default[:icinga][:services] = []
+default[:icinga][:services] = [
+  {
+    "use" => "generic-service",
+    "host_name" => "localhost",
+    "service_description" => "Ping",
+    "check_command" => "check_ping!100.0,1%!500.0,10%"
+  },
+  {
+    "use": "generic-service",
+    "host_name": "localhost",
+    "service_description": "SSH",
+    "check_command": "check_ssh"
+  }
+]
 default[:icinga][:servicegroups] = []
 
 default[:icinga][:timeperiods] = [
