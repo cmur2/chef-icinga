@@ -120,7 +120,7 @@ template "#{install_path}/etc/conf.d/templates.cfg" do
   group "icinga"
   variables(
     :contacts => node[:icinga][:template][:contacts], :contactgroups => node[:icinga][:template][:contactgroups],
-    :hosts => node[:icinga][:template]v[:hosts], :hostgroups => node[:icinga][:template][:hostgroups],
+    :hosts => node[:icinga][:template][:hosts], :hostgroups => node[:icinga][:template][:hostgroups],
     :services => node[:icinga][:template][:services], :servicegroups => node[:icinga][:template][:servicegroups],
     :timeperiods => node[:icinga][:template][:timeperiods],
     :commands => node[:icinga][:template][:commands] )
