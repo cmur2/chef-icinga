@@ -1,5 +1,7 @@
 # chef-icinga
 
+[![Build Status](https://travis-ci.org/cmur2/chef-icinga.png)](https://travis-ci.org/cmur2/chef-icinga)
+
 ## Description
 
 Installs Icinga, the nagios-plugins and icinga-web (the new web interface) from source on recent Debian (and Ubuntu) platforms including Apache2 and MySQL server components.
