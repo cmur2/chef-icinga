@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
 gem 'rake'
-gem 'foodcritic', :platform => :ruby_19
+gem 'foodcritic', '~> 3.0', :platform => :ruby_19
